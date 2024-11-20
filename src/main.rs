@@ -1,6 +1,4 @@
 mod checker;
-
-use checker::check_phone_number;
 use dialoguer::{console::Term, theme::ColorfulTheme, Select};
 use ferris_says::say;
 use std::io::{self, stdout, BufWriter, Write};
@@ -27,7 +25,7 @@ fn main() {
         "数値" => checker::check_number(input),
         "真偽値" => checker::check_boolean(input),
         "日本語" => checker::check_japanese(input),
-        "電話番号" => check_phone_number(input),
+        "電話番号" => checker::check_phone_number(input),
         _ => unreachable!(),
     };
 

@@ -31,11 +31,11 @@ fn main() {
 
     let stdout = stdout();
     let message = if result {
-        format!("チェックした結果、これはちゃんと{}でした", validation_type)
+        format!("チェックした結果、{}は{}でした", input, validation_type)
     } else {
         format!(
-            "チェックした結果、これは{}ではありませんでした",
-            validation_type
+            "チェックした結果、{}は{}ではありませんでした",
+            input, validation_type
         )
     };
     let width = message.chars().count() + 4;

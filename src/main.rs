@@ -14,7 +14,7 @@ fn main() {
 
     let validation_type = validation_types[selection.unwrap()];
 
-    print!("対象の文字列を入力してください: ");
+    print!("対象のデータを入力してください: ");
     io::stdout().flush().unwrap();
 
     let mut input = String::new();

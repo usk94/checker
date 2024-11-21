@@ -13,7 +13,7 @@ fn main() {
     ];
 
     let selection = Select::with_theme(&ColorfulTheme::default())
-        .with_prompt("チェックの種類を選んでください")
+        .with_prompt("バリデーションの種類を選んでください")
         .items(&validation_types)
         .default(0)
         .interact_on_opt(&Term::stdout())

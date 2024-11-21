@@ -9,12 +9,12 @@ pub enum CheckerType {
 }
 
 impl CheckerType {
-    fn name(&self) -> &'static str {
+    fn name(&self) -> String {
         match self {
-            CheckerType::Number => "数値",
-            CheckerType::Boolean => "真偽値",
-            CheckerType::Japanese => "日本語",
-            CheckerType::PhoneNumber => "電話番号",
+            CheckerType::Number => String::from("数値"),
+            CheckerType::Boolean => String::from("真偽値"),
+            CheckerType::Japanese => String::from("日本語"),
+            CheckerType::PhoneNumber => String::from("電話番号"),
         }
     }
 

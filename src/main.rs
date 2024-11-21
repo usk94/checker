@@ -1,10 +1,17 @@
 mod checker;
+use checker::CheckerType;
 use dialoguer::{console::Term, theme::ColorfulTheme, Select};
 use ferris_says::say;
 use std::io::{self, stdout, BufWriter, Write};
 
 fn main() {
-    let validation_types = vec!["数値", "真偽値", "日本語", "電話番号"];
+    let validation_types = vec![
+        CheckerType::Number,
+        CheckerType::Boolean,
+        CheckerType::Japanese,
+        CheckerType::PhoneNumber,
+    ];
+
     let selection = Select::with_theme(&ColorfulTheme::default())
         .with_prompt("チェックの種類を選んでください")
         .items(&validation_types)
@@ -12,7 +19,7 @@ fn main() {
         .interact_on_opt(&Term::stdout())
         .unwrap();
 
-    let validation_type = validation_types[selection.unwrap()];
+    let validation_type = &validation_types[selection.unwrap()];
 
     print!("対象のデータを入力してください: ");
     io::stdout().flush().unwrap();
@@ -21,13 +28,7 @@ fn main() {
     io::stdin().read_line(&mut input).unwrap();
     let input = input.trim();
 
-    let result = match validation_type {
-        "数値" => checker::check_number(input),
-        "真偽値" => checker::check_boolean(input),
-        "日本語" => checker::check_japanese(input),
-        "電話番号" => checker::check_phone_number(input),
-        _ => unreachable!(),
-    };
+    let result = validation_type.check(input);
 
     let stdout = stdout();
     let message = if result {
